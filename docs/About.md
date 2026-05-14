@@ -2,14 +2,44 @@
 
 ## 李锦峰
 
-### 教育及工作经历
-+ 2011 ~ 2015 中国科学技术大学，少年班学院，严济慈物理英才班，原子分子物理专业。
-+ 2015 ~ 2021 中国科学院-信息工程研究所，计算机体系结构方向。
-+ 2021.03 ~ 至今：华为海思，主任工程师。主要研究方向：CPU安全和访存子系统设计。
+**从原子物理到 CPU 微架构，一个底层计算探索者的笔记。**
 
-### 出版物
+### 这条路
 
-+ *Zipper Stack: Shadow Stacks Without Shadow* **Jinfeng Li**, Liwei Chen, Qizhen Xu, Linan Tian, Gang Shi, Kai Chen and Dan Meng. ESORICS 2020 and Journal of Computer Security
-+ *Efficient Return Address Verification Based on Dislocated Stack* **Jinfeng Li**, Qizhen Xu, Liwei Chen, Gang Shi and Dan Meng. Journal of IEEE TCAD
-+ *ABCFI: Fast and Lightweight Fine-grained Hardware-assisted Control Flow Integrity* **Jinfeng Li**, Liwei Chen, Gang Shi, Kai Chen and Dan Meng. Journal of IEEE TCAD
-+ ……
+2011 年，我走进中国科学技术大学少年班学院，学的是原子分子物理。
+四年后，我转身扎进计算机体系结构——在中科院信息工程研究所跟着孟丹老师，一读就是六年博士。
+
+**2015–2021 · 中科院 · 计算机体系结构 博士**
+:   研究方向：CPU 安全，主要是内存漏洞与攻击技术。
+    一作发表 CCF-A 论文两篇（ESORICS、IEEE TCAD），十余项专利。
+
+**2021–至今 · 华为 · 体系结构研究员（职级 18）**
+:   **安全**：制定 CPU 安全设计方法学，在工业微架构开发中流程化分析安全需求，受邀在安全技术峰会分享。
+    主导发现 ARM 架构设计及其芯片 IP 安全问题，在实际商业产品中复现，推动 ARM 更新 SPEC 成功。
+
+    **架构**：SoC 访存子系统微架构设计、互联可靠性协议设计（对比 UEC/NVLink 有显著 PPA 和扩展性优势）。
+
+    **编译**：基于 LLVM 的微架构特征驱动优化，在关键业务中获得 2%–5% 性能提升，方案已部署至产品线。
+
+    **分布式**：设计基于依赖图的异构算子调度框架，C++/Python 库，为大规模模型部署提供计算图执行引擎。
+
+    **协作**：组织约 10 人研究团队（含海外研究员），协调 CPU 访存子系统相关预研项目，年预算百万美元级。
+
+### 写什么
+
+这个博客主要聊 **CPU 和它周围的一切**——微架构、安全、编译器、互联协议。
+
+我习惯用生活化的比喻来讲硬核的技术。如果你看到「厨房里的流水线」或者「万达广场的交通调度」，那大概就是我在试图把芯片底层的复杂逻辑，翻译成大家都能听懂的语言。
+
+目前正在连载的系列：
+- 🏠 **[漫谈 CPU 安全](https://readm.github.io/1%20漫谈CPU安全/)** — 从底层出发，把 CPU 安全这个庞然大物拆开来慢慢讲。
+
+### 出版物（一作）
+
+- *Zipper Stack: Shadow Stacks Without Shadow* — ESORICS 2020 & JCS
+- *Efficient Return Address Verification Based on Dislocated Stack* — IEEE TCAD
+- *ABCFI: Fast and Lightweight Fine-grained Hardware-assisted Control Flow Integrity* — IEEE TCAD
+
+### 联系
+
+讨论、拍砖、参与，欢迎在对应文章的 GitHub 仓库提 Issue。
