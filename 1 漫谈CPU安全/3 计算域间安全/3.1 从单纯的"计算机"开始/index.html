@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh_CN" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>3.1 从单纯的"计算机"开始 - Readm's Blog</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.1 \u4ece\u5355\u7eaf\u7684\"\u8ba1\u7b97\u673a\"\u5f00\u59cb";
+        var mkdocs_page_input_path = "1 \u6f2b\u8c08CPU\u5b89\u5168/3 \u8ba1\u7b97\u57df\u95f4\u5b89\u5168/3.1 \u4ece\u5355\u7eaf\u7684\"\u8ba1\u7b97\u673a\"\u5f00\u59cb.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ET7BC0JY44"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ET7BC0JY44');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Readm's Blog
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Readm's Blog</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../About/">About</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 漫谈CPU安全</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">0 引言</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../0%20%E5%BC%95%E8%A8%80/0%20%E5%BC%95%E8%A8%80/">0 引言</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">1 通用知识</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../1%20%E9%80%9A%E7%94%A8%E7%9F%A5%E8%AF%86/1.1%20%E4%BB%80%E4%B9%88%E6%98%AFCPU/">1.1 什么是CPU</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../1%20%E9%80%9A%E7%94%A8%E7%9F%A5%E8%AF%86/1.2%20CPU%E5%AE%89%E5%85%A8%E5%8C%85%E5%90%AB%E4%BB%80%E4%B9%88/">1.2 CPU安全包含什么</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../1%20%E9%80%9A%E7%94%A8%E7%9F%A5%E8%AF%86/1.3%20%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%94%BB%E5%87%BB%E5%90%91%E9%87%8F/">1.3 威胁模型和攻击向量</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">2 计算域内安全</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../2%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8/2.1%20%E4%BB%8E%E6%8E%A7%E5%88%B6%E6%B5%81%E5%8A%AB%E6%8C%81%E6%94%BB%E5%87%BB%E8%AE%B2%E8%B5%B7/">2.1 从控制流劫持攻击讲起</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../2%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8/2.2%20%E5%8C%BA%E5%88%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E4%BB%A3%E7%A0%81/">2.2 区分数据与代码</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../2%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8/2.3%20%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%94%A8%E6%94%BB%E5%87%BB/">2.3 代码复用攻击</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../2%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8/2.4%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF/">2.4 计算域内安全防御技术</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3 计算域间安全</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">3.1 从单纯的"计算机"开始</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#_1">一个厨师的厨房</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">厨房里来了第二个厨师</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">所以——为什么我没感觉到"乱"？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">叫个管理员吧</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-process-abstraction">1. 进程抽象（Process Abstraction）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-virtual-memory">2. 虚拟内存（Virtual Memory）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-privilege-levels">3. 特权级（Privilege Levels）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">管理员也会翻车</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">从"共享厨房"到"独门独户"</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_7">虚拟化的真正起源：不是安全，是省钱</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#x86">当虚拟化遇见 x86：硬件辅助的姗姗来迟</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_8">重新理解虚拟化隔离</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">再往前一步：还可以更安全吗？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">一张图总结我们的旅程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">那么，接下来聊什么？</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">4 可信安全和故障注入安全</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../4%20%E5%8F%AF%E4%BF%A1%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E5%AE%89%E5%85%A8/4.1%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97/">4.1 从零开始构建可信计算</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">5 侧信道安全和故障注入攻击</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../5%20%E4%BE%A7%E4%BF%A1%E9%81%93%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/5.1%20%E4%BB%8E%22%E4%BE%A7%22%E4%BF%A1%E9%81%93%E8%AE%B2%E8%B5%B7/">从"侧"信道讲起</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../5%20%E4%BE%A7%E4%BF%A1%E9%81%93%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/5.2%20%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/">小试牛刀</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">8 杂谈</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../8%20%E6%9D%82%E8%B0%88/8.1%20%E5%A6%82%E4%BD%95%E9%87%8F%E5%8C%96CPU%E5%AE%89%E5%85%A8/">8.1 如何量化CPU安全</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">9 反馈与合作</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../9%20%E5%8F%8D%E9%A6%88%E4%B8%8E%E5%90%88%E4%BD%9C/%E5%8F%8D%E9%A6%88%E5%92%8C%E5%90%88%E4%BD%9C/">反馈与合作</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 杂谈</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../2%20%E6%9D%82%E8%B0%88/%E9%9D%A2%E5%90%91%E4%BA%BA%E5%81%9A%E6%8A%80%E6%9C%AF/">以人为本做技术</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 Old Blogs (before 2020)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Others</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/Others/2016-09-06-prompt-in-readline/">在readline中使用颜色prompt导致显示bug</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/Others/2016-09-23-syscall/">Linux的虚拟系统调用加速</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/Others/2018-04-11-reserve-register/">如何在编译器中保留特定寄存器</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/Others/2020-02-03-huffman/">Huffman树的推广</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Security</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/Security/2016-09-09-aslr-linux/">Linux下ASLR概述</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/Security/2016-11-09-cet-shadow_stacks/">Intel官方手册：CET技术预览-影子栈</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/Security/2020-07-27-zipper/">Zipper Stack工作介绍和反思总结</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Riscv</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/riscv/2018-02-18-riscv-addins/">如何在RISC-V中添加一个指令</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/riscv/2018-02-18-riscv/">RISC-V 技术概览</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/riscv/2018-02-19-rocket-0/">Rocket Core源代码笔记——入门</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/riscv/2018-03-15-riscv-bypass/">Rocket Core源代码笔记——旁路</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/riscv/2018-11-19-rocket-scoreboard/">Rocket Core源代码笔记——Scoreboard</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/riscv/2018-11-20-rocket-abbrs/">Rocket Core源代码笔记——缩写</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../3%20Old%20Blogs%20%28before%202020%29/riscv/2018-11-21-riscv-control-flow/">Rocket Core源代码笔记——控制流</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Readm's Blog</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>1 漫谈CPU安全 &raquo;</li>
+          <li>3 计算域间安全 &raquo;</li><li>3.1 从单纯的"计算机"开始</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="31">3.1 从单纯的"计算机"开始</h1>
+<h2 id="_1">一个厨师的厨房</h2>
+<p>想象一下——你有一个私人厨房。没有别人。灶台是你的，刀具是你的，冰箱里那瓶藏了好久的酱也是你的。你切菜、开火、翻炒，整个空间里唯一的变量就是你自己的操作节奏。没有人和你抢水槽，没有人挪走你刚洗好的锅，更不会有人偷吃你切好的菜。</p>
+<p>香，实在是太香了。</p>
+<p>早期的计算机就是这样——<strong>一台机器，一个用户，跑一个程序</strong>。从 ENIAC 到那些早期的个人计算机，"计算"这件事是高度私有的。你坐上去，CPU 从你启动到你关机，全程只为你一个人服务。内存里只有你的指令和数据，不存在"别人的代码偷偷读走你的数据"这种问题——因为根本没有"别人"。</p>
+<p>这个阶段的安全模型简单到令人感动：<strong>物理安全就是全部</strong>。谁能坐到这台机器前面，谁就能用它。不需要进程隔离，不需要内存保护，甚至连操作系统都是一个简单的循环（executive loop），程序跑完就结束，干净利落。</p>
+<p>但这种"单纯"……很快就结束了。</p>
+<h2 id="_2">厨房里来了第二个厨师</h2>
+<p>好，现在问题来了。</p>
+<p>你正用着你的私人厨房做着菜，突然有人跟你说——"不好意思，从今天起这个厨房是共享的，还有一个厨师要跟你一起用。"</p>
+<p>？？？</p>
+<p>几个厨师同时用同一个灶台、同一个冰箱、同一把菜刀。A 厨师正要颠勺的时候，B 厨师伸手过来拿你的油壶。C 厨师找不到自己的碗，顺手把你的碗拿走了。你切好的菜放在案板上，回头一看——B 厨师在上面剁了他的排骨。</p>
+<p><strong>乱不乱？乱死了。</strong></p>
+<p>有人可能说："没事，大家讲好规矩就行了嘛。"——但问题是，总有人不自觉，或者总有人"不小心"。而更重要的是，<strong>在没有管理员的情况下，一个厨师根本没办法阻止另一个厨师动他的东西。</strong></p>
+<p><img alt="德克萨斯做得到吗" src="../../static/德克萨斯做得到吗.jpg" /></p>
+<p>（自如合租做得到吗？？？）</p>
+<p>好，这就是 <strong>资源共享带来的冲突</strong>。</p>
+<h2 id="_3">所以——为什么我没感觉到"乱"？</h2>
+<p>看到这里你可能会说："不对啊，我电脑上同时开着浏览器、写文档、挂QQ、后台还在编译代码，也没见它们打架啊？它们不都在一个CPU上跑吗？"</p>
+<p>对，这是个好问题。让我们仔细想想——</p>
+<p><strong>你的电脑有几个CPU（或者说几个核心）？</strong></p>
+<p><em>（低头检查中……）</em></p>
+<p>可能是4核心、8核心、16核心。但你同时运行的程序呢？光浏览器可能就开了几十个标签页，再加上IDE、聊天软件、音乐播放器、后台服务……随便数数都几十上百个。</p>
+<p><strong>核心数（4、8、16）远小于同时运行的程序数（几十上百个）。</strong> 那它们是怎么"同时"工作的？</p>
+<p>其实别说是多核时代了，回到更早的计算机时代，这个问题更明显：</p>
+<blockquote>
+<p>1950年代，一台计算机价值数百万美元，运行起来像一间房子那么大。程序员要把写好的程序打在<strong>穿孔纸带</strong>或者<strong>穿孔卡片</strong>上，交给操作员。操作员把卡片喂进机器，机器跑完，打印出结果——然后操作员再喂下一张卡片的程序。</p>
+</blockquote>
+<p>这就是 <strong>批处理系统（Batch Processing）</strong>。一次只跑一个程序，跑完换下一个。计算机很贵，不能让它闲着，所以操作员要保证它一直在跑。但程序之间怎么切换？人工切换。操作员手动把下一张纸带塞进去。</p>
+<p>想象一下这个画面：一个穿着白大褂的操作员，抱着一摞穿孔卡片，像喂老虎机一样一张一张往里塞。前面的程序跑崩了？把结果撕下来，塞下一张。前面的程序算了半天算错了？那不关我的事，我只负责喂卡片。</p>
+<p>那时候的程序员写好代码交给操作员之后，可能要等好几个小时甚至到第二天才能拿到结果——这就是传说中的"<strong>Turnaround Time</strong>"（周转时间）。</p>
+<p><strong>所以，真正的问题是：</strong></p>
+<blockquote>
+<p><em>如果一次只能跑一个程序，怎么变成"同时跑很多程序"的？而且为什么我没感觉到它们是在"轮流用"CPU？</em></p>
+</blockquote>
+<p>为了让大伙儿感受一下"同时运行"是怎么回事，我们回到共享厨房的场景——</p>
+<p>管理员悄悄地做了一个决定：让厨师们<strong>轮流用</strong>厨房。</p>
+<p>他让A厨师先用10秒钟，然后喊停，把A厨师的东西迅速<strong>收拾</strong>好、码到一边，再把B厨师请进来，把之前给B<strong>收拾</strong>好的东西<strong>恢复</strong>回原位。B厨师干10秒，再<strong>收拾</strong>出去，C<strong>恢复</strong>进来……</p>
+<p>关键是——<strong>要切换得足够快</strong>。快到每个厨师走进厨房的时候，一切都井井有条，所有工具都放在自己熟悉的位置上，完全看不出刚刚被别人用过。</p>
+<p>每个厨师都觉得自己<strong>独占</strong>了整个厨房。</p>
+<p>这个思路，在计算机里就是 <strong>时分复用（Time-Division Multiplexing）</strong>。CPU 就是那个灶台：</p>
+<ul>
+<li><strong>收拾（Save State）</strong> = <strong>进程切换（Process Switch）</strong>：把当前程序的所有现场（寄存器值、栈指针、程序计数器等）保存下来</li>
+<li><strong>恢复（Restore State）</strong> = <strong>上下文切换（Context Switch）</strong>：把下一个程序之前保存的现场重新装回 CPU 寄存器</li>
+</ul>
+<p>这种"快速轮换"的调度策略，就是 <strong>时间片轮转（Round-Robin Scheduling）</strong>。一秒切一百次，你坐在电脑前感觉所有程序都在"同时运行"。</p>
+<p>但问题随之而来——</p>
+<p>这些程序在切换的时候，共享着同一块物理内存。A 程序正在内存里处理你的银行卡密码，B 程序——一个不太老实的程序——能不能直接读 A 程序的内存？</p>
+<p><strong>答案是：在没有隔离的系统中，可以。</strong></p>
+<p>两个程序的代码和数据在物理内存里紧挨着，一个程序直接去读另一个程序的内存地址，跟串门一样容易。如果 A 程序存了敏感数据，B 程序可以直接抄走。甚至更坏——B 程序可以直接改写 A 程序的数据，让它执行恶意代码。</p>
+<p>这就回到了我们共享厨房的比喻：<strong>在没有管理员的情况下，一个厨师根本没办法保护自己的食材不被别的厨师偷走或破坏。</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这个问题本质上就是 <strong>计算域隔离</strong> 的问题：一个"域"（程序、进程、虚拟机）中的计算活动，如何不被另一个"域"中的活动干扰或窃取？</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个程序/进程</td>
+<td>一个厨师</td>
+</tr>
+<tr>
+<td>CPU（时间片）</td>
+<td>灶台（轮流使用）</td>
+</tr>
+<tr>
+<td>内存（RAM）</td>
+<td>冰箱和储物柜</td>
+</tr>
+<tr>
+<td>磁盘文件</td>
+<td>自己的菜谱和笔记</td>
+</tr>
+<tr>
+<td>域隔离</td>
+<td>每个厨师有自己的独立工作台和储物柜</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="_4">叫个管理员吧</h2>
+<p>面对共享厨房的混乱，一个自然而然的办法就是——<strong>请个管理员</strong>。</p>
+<p>这个管理员干什么呢？</p>
+<ul>
+<li><strong>分配资源</strong>：规定哪个厨师在什么时间段用哪个灶台</li>
+<li><strong>划定区域</strong>：每个厨师只能在指定的台面上操作</li>
+<li><strong>仲裁冲突</strong>：两个厨师同时要一个工具时，管理员说了算</li>
+<li><strong>保护边界</strong>：如果 A 的菜被动了，管理员得负责查清楚</li>
+</ul>
+<p>翻译成计算机语言，这个"管理员"就是 <strong>操作系统内核</strong>。它通过几个关键机制来干活：</p>
+<h3 id="1-process-abstraction">1. 进程抽象（Process Abstraction）</h3>
+<p>每个程序被包装成一个"进程"，有自己的执行上下文（寄存器的值、栈、堆等）。操作系统通过进程控制块（PCB）来记录每个进程的状态。程序 A 切换到程序 B 时，内核会先保存 A 的现场（寄存器的值），再恢复 B 的现场。这就是传说中的 <strong>上下文切换（Context Switch）</strong>。</p>
+<h3 id="2-virtual-memory">2. 虚拟内存（Virtual Memory）</h3>
+<p>每个进程拥有自己独立的"虚拟地址空间"。进程 A 的内存地址 0x1000，和进程 B 的内存地址 0x1000，物理上根本就不在同一个地方。但从每个进程的角度看，它们都感觉自己"独占"了整个内存。</p>
+<p><strong>这个设计简直绝了</strong>——每个进程都觉得自己是宇宙的中心，全内存都是它的。但实际上，操作系统在背后偷偷做了地址翻译（通过 MMU + 页表），把每个进程的"错觉"映射到物理内存的不同区域。</p>
+<blockquote>
+<p>等等，那如果 A 程序想去读 B 程序的地址呢？</p>
+<p>硬件层面的 MMU 会在地址翻译时发现——"哎，这个地址不是你的，你不许读"——然后抛出一个异常（Page Fault / Segmentation Fault），操作系统捕到这个异常后，通常就会把不守规矩的程序杀掉。</p>
+<p>这就像你刚想伸手去够隔壁厨师案板上的肉，管理员一巴掌把你手拍了回去。</p>
+</blockquote>
+<h3 id="3-privilege-levels">3. 特权级（Privilege Levels）</h3>
+<p>并不是所有程序都有权限做所有事情。CPU 提供不同的运行模式——x86 上的 Ring 0（最高权限）和 Ring 3（最低权限），Arm 上的 EL0/EL1/EL2/EL3——限制了不同程序可以执行的指令。</p>
+<ul>
+<li><strong>敏感操作</strong>（修改页表、操作 I/O 设备、关闭中断）只能在最高特权级执行</li>
+<li><strong>普通操作</strong>（加减乘除、读写自己的内存）在最低特权级就能干</li>
+</ul>
+<p>操作系统内核跑在 Ring 0，应用程序跑在 Ring 3。如果 Ring 3 的程序试图执行 Ring 0 的指令，CPU 直接拒绝并抛异常。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程</td>
+<td>一个在厨房工作的厨师</td>
+</tr>
+<tr>
+<td>虚拟内存</td>
+<td>每个厨师眼里"整个世界都是我的"的幻觉</td>
+</tr>
+<tr>
+<td>MMU + 页表</td>
+<td>背后偷偷做地址翻译的行政助手</td>
+</tr>
+<tr>
+<td>特权级（Ring 0）</td>
+<td>管理员（啥都能干）</td>
+</tr>
+<tr>
+<td>特权级（Ring 3）</td>
+<td>普通厨师（只能在自己台面上干活）</td>
+</tr>
+<tr>
+<td>系统调用</td>
+<td>厨师需要敏感材料时，举手叫管理员帮忙拿</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>有了这三板斧，操作系统看起来是把"域隔离"做得不错了。三个厨师各忙各的，互不干扰，岁月静好。</p>
+<div class="admonition note">
+<p class="admonition-title">当初为什么要隔离？—— Safety 而非 Security</p>
+<p>看到这里你可能以为：操作系统的进程隔离、虚拟内存这些机制，从一开始就是为了防止恶意程序偷数据吧？</p>
+<p>其实不是。早期操作系统引入这些隔离手段，第一个动机是 <strong>Safety（稳定性）</strong>，而不是 <strong>Security（安全性）</strong>。</p>
+<p>想象一下：在批处理时代，如果一个程序跑崩了（比如写了不该写的内存地址），整个机器也跟着崩溃，所有在排队的作业全白费。在分时系统里，如果一个 Buggy 程序崩了导致整个系统挂掉，其他所有用户都受影响。</p>
+<p><strong>所以最早的隔离设计，核心诉求是："一个程序挂了，别把其他程序也拖下水。"</strong></p>
+<p>这就好比共享厨房里，管理员最早画出工作区域的初衷，不是为了防止厨师之间互相偷东西——而是防止一个厨师笨手笨脚打翻油锅，把整个厨房烧了。</p>
+<p>直到今天这个初衷依然重要：<strong>内核对失控进程的首要处理动作是保护系统稳定性，而不是保护数据机密性。</strong> 只不过后来人们发现——这套"防止互相搞破坏"的机制，恰好也能用来"防止互相偷东西"。Security 是 Safety 的一个美丽的副产品。</p>
+<p>这个视角值得记住——在计算域安全的历史里，很多后来被视为"安全隔离"的技术，追根溯源，最初都是为了别的目的被发明出来的。</p>
+</div>
+<p><strong>但问题在于——这个管理员本身并不完美。</strong></p>
+<h2 id="_5">管理员也会翻车</h2>
+<p>共享厨房的管理员虽然能解决大部分冲突，但仔细想想：</p>
+<ul>
+<li>管理员自己也要在厨房里走动吧？他可能不小心碰翻别人的锅（<strong>内核代码自身也有 bug</strong>）</li>
+<li>管理员制定的规则可能有漏洞——规定灶台使用时间，但没规定油烟机的使用规则（<strong>内核的攻击面很大，总有没考虑到的角落</strong>）</li>
+<li>狡猾的厨师可能利用规则漏洞，在管理员眼皮底下搞小动作（<strong>对内核接口的巧妙利用</strong>）</li>
+</ul>
+<p>用计算机的话说就是：</p>
+<ul>
+<li><strong>内核漏洞</strong>：内核也是软件，也有 bug。一个不怀好意的程序可能利用内核漏洞，从 Ring 3 提到 Ring 0。权限一旦提升，所有的"隔离"在它面前就跟纸糊的一样。</li>
+<li><strong>TOCTOU 漏洞</strong>：管理员在"检查权限"和"执行操作"之间有一瞬间的空隙——"Time of Check to Time of Use"。狡猾的厨师（恶意程序）可以利用这个时间窗口，在管理员检查完后、操作之前，偷偷把东西换了。</li>
+<li><strong>侧信道攻击</strong>：就算内存隔离了，CPU 缓存、分支预测器这些<strong>共享硬件资源</strong>还是会留下"痕迹"。一个进程可以通过测量缓存访问时间来推断另一个进程的数据——我们在第5章会细聊这个。</li>
+<li><strong>接口攻击面</strong>：管理员要提供各种服务接口给厨师们用（系统调用）。接口越多，漏洞的可能性就越大。"拿一瓶酱油"这个接口可能很安全，但"帮我拿一下那个柜子第二层左边第三个格子里的红色瓶子"这种接口，中间出错的概率就大多了。</li>
+</ul>
+<p>重点是：<strong>操作系统提供的隔离是逻辑层面的隔离，它依赖于内核代码的正确性和完整性。</strong> 一旦内核被攻破，所有隔离都化为乌有。</p>
+<p>"管理员也是打工人，也会犯错"——这就是第三章我要带你探讨的核心问题。</p>
+<div class="admonition note">
+<p class="admonition-title">时代共鸣：AI 也说'我会犯错'</p>
+<p>这种"管理员承认自己会犯错"的坦诚，在今天的人工智能时代以一种意想不到的方式重演了。</p>
+<p>你打开任何一个大模型产品，几乎都会看到一行免责声明——<strong>"本AI可能会犯错，请仔细核实关键信息"</strong>。这句话表面上是免责，实质上是划定一条责任边界：系统提供服务，但不担保完美，用户需自行承担风险。</p>
+<p>操作系统和 AI 在这一点上惊人地相似：一个告诉你"我的隔离可能有漏洞"，另一个告诉你"我的回答可能有错误"。它们的潜台词是同一个——<strong>系统的复杂性决定了它不可能完美，你选择用它，你就接受了这个前提。</strong></p>
+<p>你会发现，无论是 OS 管理员还是大模型，"我会犯错"这句话从来不是终点。真正的问题在于：<strong>在明知不完美的情况下，你还愿意信任它吗？如果愿意，你愿意付出多少代价来兜底？</strong> 这个问题贯穿了整个计算域安全的历史，也是今天每一个 AI 用户同样要回答的问题。</p>
+</div>
+<h2 id="_6">从"共享厨房"到"独门独户"</h2>
+<h3 id="_7">虚拟化的真正起源：不是安全，是省钱</h3>
+<p>聊到这里，你可能会觉得整个故事是这样的：</p>
+<blockquote>
+<p>"操作系统隔离不够完美 → 所以需要虚拟化来加强隔离 → 于是有了硬件虚拟化来保证安全。"</p>
+</blockquote>
+<p>听起来顺理成章，但历史的剧本并不是这么写的。</p>
+<p>回到1960年代。IBM 投入了大约 <strong>50亿美元</strong> 来开发 System/360 系列——按今天的市值算超过300亿美元，是当时除了阿波罗计划之外最大的单笔技术投资。一台 System/360 大型机售价在数百万美元级别，最便宜的 Model 30 月租金就要 8,000 美元，放在现在的物价相当于一台超级跑车的月供。企业、大学、研究机构要倾家荡产才能买得起一台。</p>
+<p>但问题来了——</p>
+<p><strong>这些贵到离谱的机器，CPU 利用率却低得可怜。</strong></p>
+<p>批处理时代，一个程序跑完，操作员要手动换下一张纸带，中间 CPU 只能空转。分时系统出现后，多个用户能"同时"用一台机器了，但更根本的矛盾浮出水面：<strong>一台机器上只能跑一个操作系统。</strong> 你习惯用这个系统，他习惯用那个系统——两种需求在同一台硬件上水火不容。</p>
+<p>这就好比你花了几百万买了整套顶级商用厨房，但一天只开一餐，剩下时间炉灶冰凉。任何有商业头脑的人看到这个画面都睡不着觉。</p>
+<blockquote>
+<p><strong>省钱提效永远是第一位，安全永远是被打疼了才会愿意付钱。</strong></p>
+</blockquote>
+<p>这话说得直白得有点难听，但历史会反复证明它是对的。</p>
+<p>这时候 IBM 剑桥科学中心（Cambridge Scientific Center）的一群工程师想了一个更大胆的主意——</p>
+<blockquote>
+<p><strong>既然没法让所有用户在同一台机器上用同一个 OS，那就干脆把这台机器"分身"成多台机器，每台跑自己的 OS。</strong></p>
+</blockquote>
+<p>这就是 <strong>虚拟机</strong> 的起源。</p>
+<p>1966-1967年，IBM CP-40 和后续的 CP-67 系统诞生了。CP 的全称是 Control Program（控制程序）——也就是最早的 <strong>虚拟机监视器（Hypervisor/VMM）</strong>。它运行在裸机上，负责把硬件"分身"成多台虚拟的 IBM System/360 大型机<a href="https://en.wikipedia.org/wiki/IBM_CP-40">citation:IBM CP-40 Wikipedia</a>。每台虚拟机上运行 CMS（Cambridge Monitor System）——一个轻量级的单用户操作系统。用户通过终端登录，看到的是一台"完整"的 IBM 大型机，想怎么用就怎么用<a href="https://en.wikipedia.org/wiki/CP/CMS">citation:CP/CMS History</a>。</p>
+<p><strong>它的根本动机，从来都不是安全隔离——而是提高昂贵硬件的利用率，让多个用户共享一台机器的计算资源。</strong></p>
+<p>套用厨房比喻来说：</p>
+<blockquote>
+<p>你有一间价值几百万的超大商用厨房，只租给一家餐厅用，大部分时间空着。你想到的办法不是"找个更好的管理员"——而是<strong>把大厨房拆分成多个独立的功能完整的迷你厨房</strong>。每个迷你厨房有自己的灶台、水槽、冰箱、刀具。租给不同餐厅，每家自己布置、自己管理。你只需要保证隔断墙够结实。</p>
+<p>隔断墙的存在，自然也让一家餐厅没法偷另一家的菜。但这个"安全隔离"，是你为了"省钱、提高利用率"顺便得到的，不是初衷。</p>
+</blockquote>
+<p>1974年，Popek 和 Goldberg 在《Formal Requirements for Virtualizable Third Generation Architectures》中正式提出了虚拟化架构的三个必要条件<a href="https://en.wikipedia.org/wiki/Popek%E2%80%93Goldberg_virtualization_requirements">citation:Popek-Goldberg requirements</a>：</p>
+<ol>
+<li><strong>等价性（Equivalence）</strong>：虚拟机运行的程序效果与裸机一致</li>
+<li><strong>资源控制（Resource Control）</strong>：VMM 对所有硬件资源有完全控制权</li>
+<li><strong>效率（Efficiency）</strong>：绝大多数指令直接在硬件上执行，无需 VMM 模拟</li>
+</ol>
+<p>注意这三条里没有任何一条跟"安全"直接相关。等价性是功能要求，资源控制是管理权要求，效率是性能要求。<strong>安全隔离是通过满足这三条之后的自然结果——因为 VMM 控制了所有资源，Guest 根本没有途径访问不属于自己的东西。</strong></p>
+<h3 id="x86">当虚拟化遇见 x86：硬件辅助的姗姗来迟</h3>
+<p>虚拟机技术从此成为大型机（IBM System/370 及其后继者）的标准配置。但在 x86 平台上，故事完全不同。</p>
+<p>1980-90年代的 x86 指令集架构有一个长期被忽略的问题：<strong>它不是经典意义上"可虚拟化"的。</strong></p>
+<p>Popek-Goldberg 形式化要求中有一条隐含条件：所有敏感指令（读写特权寄存器、操作 I/O 等）在非特权模式下执行时，必须触发 trap（异常）以便 VMM 拦截模拟。但 x86 上有十几条指令——比如 <code>POPF</code>、<code>SIDT</code>、<code>SGDT</code>、<code>SMSW</code>——它们在低特权级执行时会<strong>静默失效</strong>（悄无声息地啥也不干），而不是触发异常<a href="https://en.wikipedia.org/wiki/X86_virtualization">citation:x86 virtualization</a>。</p>
+<p>这意味着 VMM 没法在软件层面优雅地拦截和模拟这些指令——因为它根本不知道 Guest OS 执行了它们。</p>
+<p>为了在 x86 上跑虚拟机，工程师只能靠"补丁"。VMware 采用了 <strong>二进制翻译（Binary Translation）</strong> 技术：Guest OS 被降级运行，敏感指令在执行前被动态扫描并替换为安全的指令序列<a href="https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/VMware_paravirtualization.pdf">citation:VMware binary translation</a>。效率可以接受，但实现极其复杂。</p>
+<p>这个僵局直到2005-2006年才被打破。Intel 推出了 <strong>VT-x</strong>（代号 Vanderpool），AMD 推出了 <strong>AMD-V</strong>（代号 Pacifica）<a href="https://en.wikipedia.org/wiki/X86_virtualization#Intel-VT-x">citation:Intel VT-x</a>。两家 CPU 厂商在硬件层面加了一套全新的运行模式，专门为虚拟化服务：</p>
+<pre><code>                     ┌──────────────────┐
+                     │   VM Entry/Exit   │
+                     └────────┬─────────┘
+                              │
+       ┌──────────────────────┴──────────────────────┐
+       │           Root Mode (VMM 运行于此)          │
+       │               Ring 0 ~ Ring 3               │
+       └──────────────────────┬──────────────────────┘
+         ┌────────────────────┼────────────────────┐
+         │  VM1 (Non-Root)    │  VM2 (Non-Root)     │
+         │                    │                      │
+         │ ┌──────┐ ┌──────┐ │  ┌──────┐ ┌──────┐  │
+         │ │Ring 0│ │Ring 3│ │  │Ring 0│ │Ring 3│  │
+         │ │Guest│ │Guest │ │  │Guest│ │Guest │  │
+         │ │ OS  │ │ Apps │ │  │ OS  │ │ Apps │  │
+         │ └──────┘ └──────┘ │  └──────┘ └──────┘  │
+         └────────────────────┴──────────────────────┘
+</code></pre>
+<p>VT-x/AMD-V 引入了"根模式（Root Mode）"和"非根模式（Non-root Mode）"。VMM 跑在根模式的 Ring 0，Guest 跑在非根模式。任何敏感操作——比如执行 <code>CPUID</code>、修改页表、访问 I/O 端口——在非根模式下都会触发 <strong>VM Exit</strong>，自动陷入根模式，由 VMM 处理。处理完再通过 <strong>VM Entry</strong> 回到 Guest。</p>
+<p>这下，所有敏感指令的拦截都在硬件层面完成，Guest OS 无需任何修改就能直接运行。<strong>x86 终于变得"可虚拟化"了。</strong></p>
+<h3 id="_8">重新理解虚拟化隔离</h3>
+<p>所以，当我们回顾这段历史，会发现一个有趣的错位：</p>
+<table>
+<thead>
+<tr>
+<th align="left">常见叙事</th>
+<th align="left">历史真相</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">"虚拟化提供了强大的安全隔离"</td>
+<td align="left">隔离是副产品，最初动机是资源共享</td>
+</tr>
+<tr>
+<td align="left">"虚拟化是操作系统隔离不够好的替代方案"</td>
+<td align="left">最初是为了不同 OS 的共存，不是隔离强度不足</td>
+</tr>
+<tr>
+<td align="left">"硬件虚拟化是为了更安全"</td>
+<td align="left">是为了解决 x86 不可虚拟化的架构问题</td>
+</tr>
+</tbody>
+</table>
+<p>这并不否定虚拟化在事实上的隔离能力。VMM 控制的硬件资源隔断，确实提供了一层比操作系统更强有力的边界——一个 VM 里的程序哪怕攻破了自己 VM 的内核，也无法直接访问另一个 VM 的内存，因为这种跨 VM 访问在硬件层面就会被拦截。</p>
+<p>只是我们需要看清：<strong>安全隔离从来不是这项技术被发明时的初心。它是资源高效利用这个更基础的需求，带来的一个极为重要的副产品。</strong></p>
+<p>而这个副产品，恰恰让云计算成为了可能。你今天租一台云服务器，和陌生人共享同一台物理机，却丝毫不担心对方能偷走你的数据——靠的就是这层"本不是为安全而设计"的隔离。</p>
+<h2 id="_9">再往前一步：还可以更安全吗？</h2>
+<p>看到这里你可能又会问：</p>
+<blockquote>
+<p>那 Hypervisor 也是软件啊，它就不出 bug 吗？万一 Hypervisor 也翻车了呢？</p>
+</blockquote>
+<p>好问题。确实，Hypervisor 也有漏洞。KVM、VMware、Xen 历史上都被爆出过严重漏洞，攻击者利用这些漏洞从 Guest 虚拟机逃逸到宿主机（这叫 <strong>VM Escape</strong>）。</p>
+<p>所以，比"虚拟化"更进一步的方案是：<strong>不信任任何人——连 Hypervisor 也不信任。</strong></p>
+<p>这就是 <strong>可信执行环境（TEE）</strong> 的思路，比如 Intel SGX。在 CPU 内部划出一块"飞地"（Enclave），这块内存连操作系统和 Hypervisor 都访问不了。数据在 CPU 外面是加密的，进到 CPU 内部才解密处理——即使你的整台机器都被攻破了，攻击者也读不到 Enclave 里的数据。</p>
+<p>（这个我们留到第4章再详细展开。）</p>
+<h2 id="_10">一张图总结我们的旅程</h2>
+<table>
+<thead>
+<tr>
+<th align="left">阶段</th>
+<th align="left">比喻</th>
+<th align="left">隔离粒度</th>
+<th align="left">隔离强度</th>
+<th align="left">核心驱动力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">单程序计算机</td>
+<td align="left">一个人用整间厨房</td>
+<td align="left">无需隔离</td>
+<td align="left">-</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">批处理 → 时分复用</td>
+<td align="left">多个厨师轮着用同一间厨房</td>
+<td align="left">❌ 无隔离</td>
+<td align="left">❌ 乱成一团</td>
+<td align="left">提高CPU利用率</td>
+</tr>
+<tr>
+<td align="left">操作系统出场</td>
+<td align="left">管理员来了！划定区域和规则</td>
+<td align="left">进程级隔离</td>
+<td align="left">⚠️ 依赖管理员不打瞌睡</td>
+<td align="left">Safety（稳定性）</td>
+</tr>
+<tr>
+<td align="left">硬件虚拟化</td>
+<td align="left">大厨房拆成独立迷你厨房</td>
+<td align="left">虚拟机级隔离</td>
+<td align="left">✅ 硬件隔断</td>
+<td align="left">资源共享 → 安全隔离(副产物)</td>
+</tr>
+<tr>
+<td align="left">更进一步(TEE)</td>
+<td align="left">自己的保险柜，钥匙自己拿着</td>
+<td align="left">硬件飞地隔离</td>
+<td align="left">✅✅ 连管理员也看不到</td>
+<td align="left">机密性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">那么，接下来聊什么？</h2>
+<p>这个表格展示了计算域隔离的演进路径。但"域"这个概念，远不止进程和虚拟机两个层次。</p>
+<p>这一章（第3章）的核心——<strong>计算域间安全</strong>——关注的是：<strong>跨越这些域边界时，会发生什么？</strong></p>
+<p>一个程序试图从它的"厨房"跑到别人的"厨房"里搞破坏——它会用什么方法？CPU 给我们准备了哪些防御？攻击者又想出了哪些骚操作来绕过？</p>
+<p>下一节（3.2），我们就从最常见、也最"经典"的域间攻击开始讲起——</p>
+<p><strong>权限提升（Privilege Escalation）</strong>。</p>
+<p>也就是：一个 Ring 3 的普通程序，怎么变成 Ring 0 的"超级管理员"？以及——CPU 和操作系统又是怎么堵住这条路的？</p>
+<p>敬请期待。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../2%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8/2.4%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF/" class="btn btn-neutral float-left" title="2.4 计算域内安全防御技术"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../4%20%E5%8F%AF%E4%BF%A1%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E5%AE%89%E5%85%A8/4.1%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97/" class="btn btn-neutral float-right" title="4.1 从零开始构建可信计算">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../2%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8/2.4%20%E8%AE%A1%E7%AE%97%E5%9F%9F%E5%86%85%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../4%20%E5%8F%AF%E4%BF%A1%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%85%E9%9A%9C%E6%B3%A8%E5%85%A5%E5%AE%89%E5%85%A8/4.1%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
